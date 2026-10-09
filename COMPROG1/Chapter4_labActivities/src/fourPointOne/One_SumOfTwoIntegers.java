@@ -1,6 +1,6 @@
 package fourPointOne;
 import java.util.Scanner;
-public class SumOfTwoIntegers {
+public class One_SumOfTwoIntegers {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -13,6 +13,7 @@ public class SumOfTwoIntegers {
 		
 		int sum = a + b;
 		System.out.println("Sum: " + sum);
+		
 	}
 
 }

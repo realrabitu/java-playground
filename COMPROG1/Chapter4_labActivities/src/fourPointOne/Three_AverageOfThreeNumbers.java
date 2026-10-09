@@ -1,7 +1,7 @@
 package fourPointOne;
 import java.util.Scanner;
 
-public class AverageOfThreeNumbers {
+public class Three_AverageOfThreeNumbers {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

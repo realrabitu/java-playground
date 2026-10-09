@@ -23,12 +23,13 @@
 hs_err_pid*
 replay_pid*
 
-# metadata 
+# Eclipse workspace metadata
 .metadata/
 
-# Other folders
-/ChapterThree
-/Test
-
-# settings
+# Eclipse project metadata
 .settings/
+.classpath
+.project
+
+# Compiled output
+bin/
