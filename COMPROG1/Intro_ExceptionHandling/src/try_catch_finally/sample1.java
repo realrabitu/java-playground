@@ -1,6 +1,6 @@
-package LoopingStatements;
+package try_catch_finally;
 import javax.swing.JOptionPane;
-public class Looping1 {
+public class sample1 {
 	int x = 0;
  	public static void main(String[] args) {
  		try { 
@@ -8,10 +8,9 @@ public class Looping1 {
  			String j = i.trim();
  			
  		} catch (Exception e) {  
- 			System.out.println(e.notify());
- 		} 
-		finally { System.out.println("LOL"); 
-		
+ 			System.out.println(e.getMessage());
+ 		} finally { 
+ 			System.out.println("Bye..."); 
 		} 
 	}
 
