@@ -6,25 +6,20 @@ import java.util.Scanner;
 public class sample5 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int input = -1;
-		int sum = 0;
-		int ctr = 0;
-		
-		for (;;) {
-			System.out.print("Enter a non-zero digit: ");
-			input = sc.nextInt();
-			ctr++;
-			if (input == 0)
-				continue;
-			sum = input + sum;
-			
-			if (ctr == 5)
-				break;
+		System.out.print("Enter number: ");
+		int input = sc.nextInt();
+		int result = squareRoot(input);
+		if (result == -1)
+			System.out.println(input + " is not a perfect square number");
+		else 
+			System.out.println("The square root is: " + result);
+	}
+	public static int squareRoot(int num) {
+		for (int i = 0; i <= num; i++) {
+			if (i * i == num)
+				return i;
 		}
-		
-		
-		System.out.println("Sum: " + sum);
-
+		return -1;
 	}
 
 }
