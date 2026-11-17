@@ -1,5 +1,5 @@
 package MethodPrograms;
-import java.io.Console;
+
 import java.util.Random;
 public class Method3 {
 	void main() {

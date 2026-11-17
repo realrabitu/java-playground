@@ -1,101 +1,192 @@
 package mmw;
 
+import javax.swing.JOptionPane;
+import java.util.Scanner;
+
+//Simple Interest: I = Prt
 public class SimpleInterest {
-	void main() {
-		// Simple Interest
-		// I = Prt
-		IO.print("What do you want to calculate?\n" +
-	             "\tI for interest\n" +
-				 "\tT for time\n" +
-	             "\tP for prinicipal\n");
-		String input = IO.readln();
-		if (input.trim().equalsIgnoreCase("I")) { 
-			IO.print("Enter principal amount: ");
-			double p = Double.parseDouble(IO.readln());
-			IO.print("Enter rate in percentage: ");
-			double r = Double.parseDouble(IO.readln());
-			
-			IO.print("Enter D for days\n"
-					+ "      M for months\n"
-					+ "      Y for years\n");
-			String d = IO.readln();
-			double interest = calculateSimpleInterest(p,r,d);
-			if (interest == -1)
-				System.out.println("Error occurred. Please try again.");
-			else
-				displayInterest();
+	static double p = 0.0, r = 0.0, i = 0.0, t = 0.0;
+	static String d = "";
+	static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		String[] duration = { "Days", "Months", "Years" };
+		String[] selection = { "Interest", "Time", "Principal", "Rate" };
+		double result = 0.0;
+		Object objInput = JOptionPane.showInputDialog(
+				null, 							  // Component
+				"What do you want to calculate?", // message
+				"Input", 						  // title
+				JOptionPane.QUESTION_MESSAGE, 	  // type
+				null, 							  // icon
+				selection, 						  // selection array
+				selection[0]); 					  // default option
+		if (objInput == null)
+			return;
+
+		String input = (String) objInput;
+
+		switch (input) {
+		case "Interest" -> {
+			try {
+				p = Double.parseDouble(
+						JOptionPane.showInputDialog(
+								null, 
+								"Enter principal amount", 
+								"Input", 
+								JOptionPane.QUESTION_MESSAGE)
+						);
 				
+				r = Double.parseDouble(
+						JOptionPane.showInputDialog(null, 
+								"Enter rate as a whole number", 
+								"Input",
+								JOptionPane.QUESTION_MESSAGE)
+						);
+			} 
+			catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, e);
+				return;
+			} 
+			
+			Object dr = JOptionPane.showInputDialog(null, 
+					"Select duration", 
+					"Input", 
+					JOptionPane.QUESTION_MESSAGE,
+					null, 
+					duration, 
+					duration[0]);
+			d = (String) dr;
+			switch (d) {
+			case "Years" -> {
+				t = Double.parseDouble(
+						JOptionPane.showInputDialog(
+								null,
+								"Enter time in years",
+								"Input",
+								JOptionPane.QUESTION_MESSAGE
+								)
+						);
+				result = calculateSimpleInterest(p,r,t);
+				break;
+			}
+			case "Days" -> {
+				t = Double.parseDouble(
+						JOptionPane.showInputDialog(
+								null,
+								"Enter time in days",
+								"Input",
+								JOptionPane.QUESTION_MESSAGE
+								)
+						);
+				result = calculateSimpleInterest(p,r,t);
+				break;
+			}
+			case "Months" -> {
+				t = Double.parseDouble(
+						JOptionPane.showInputDialog(
+								null,
+								"Enter time in months",
+								"Input",
+								JOptionPane.QUESTION_MESSAGE
+								)
+						);
+				result = calculateSimpleInterest(p,r,t);
+				break;
+			}
+			default ->
+				JOptionPane.showMessageDialog(
+						null,
+						"Invalid input. Try again.",
+						"Error",
+						JOptionPane.ERROR_MESSAGE
+						);
+			}
+			break;
 		}
-		else if (input.trim().equalsIgnoreCase("T")) {
-			IO.print("Enter interest: ");
-			double i = Double.parseDouble(IO.readln());
-			IO.print("Enter principal: ");
-			double p = Double.parseDouble(IO.readln());
-			IO.print("Enter rate: ");
-			double r = Double.parseDouble(IO.readln());
-			System.out.printf("%s%.2f%n", "Time in years: ", calculateTime(i,p,r));
-			IO.print("Would you like to convert it into YY/MM/DD format?" +
-					 "\n\tY - Yes\n\tn - no");
-			if(IO.readln().trim().equalsIgnoreCase("Y")) { }
-				//convertTimeFormat();
+		case "Time" -> {
+			i = Double.parseDouble(
+					JOptionPane.showInputDialog(null, 
+							"Enter interest amount", 
+							"Input", 
+							JOptionPane.QUESTION_MESSAGE
+							)
+					);
+			r = Double.parseDouble(
+					JOptionPane.showInputDialog(
+							null, 
+							"Enter rate as a whole number", 
+							"Input",
+							JOptionPane.QUESTION_MESSAGE
+							)
+					);
+			p = Double.parseDouble(
+					JOptionPane.showInputDialog(
+							null, 
+							"Enter principal amount", 
+							"Input", 
+							JOptionPane.QUESTION_MESSAGE
+							)
+					);
+			break;
+		}
+		case "Principal" -> {
+
+			i = Double.parseDouble(
+					JOptionPane.showInputDialog(null, 
+							"Enter interest amount", 
+							"Input", 
+							JOptionPane.QUESTION_MESSAGE)
+					);
+
+			r = Double.parseDouble(
+					JOptionPane.showInputDialog(null, 
+							"Enter rate as a whole number", 
+							"Input", 
+							JOptionPane.QUESTION_MESSAGE)
+					);
+			Object dr = JOptionPane.showInputDialog(null, 
+					"Select duration", "Input", JOptionPane.QUESTION_MESSAGE,
+					null, duration, duration[0]);
+			d = (String) dr;
+			break;
+		}
+		case "Rate" -> {
+			i = Double.parseDouble(
+					JOptionPane.showInputDialog(null, 
+							"Enter interest amount", 
+							"Input", 
+							JOptionPane.QUESTION_MESSAGE)
+					);
+			p = Double.parseDouble(
+					JOptionPane.showInputDialog(
+							null, 
+							"Enter principal amount", 
+							"Input", 
+							JOptionPane.QUESTION_MESSAGE)
+					);
+			Object dr = JOptionPane.showInputDialog(null, "Select duration", "Input", JOptionPane.QUESTION_MESSAGE,
+					null, duration, duration[0]);
+			d = (String) dr;
 			
 		}
-		
-		
-		
-		
-	}
-	void displayInterest() {
-		
-	}
-	
-	double calculateSimpleInterest(double p, double r, String d) {
-		double t = 0.0;
-		if (d.trim().equalsIgnoreCase("D")) {
-			IO.print("Enter time in days: ");
-			t = Double.parseDouble(IO.readln());
-			IO.print("Enter O for ordinary interest\n"
-					+"      E for exact interest\n");
-			String type = IO.readln();
-			if (type.trim().equalsIgnoreCase("O"))
-				t = calculateDaysToYears(t,360);
-			else if (type.trim().equalsIgnoreCase("E"))
-				t = calculateDaysToYears(t,365);
-			else {
-				IO.println("Invalid interest type.\n" + "Try again.");
-				return -1;
-			}
-		
+
+		default -> {
+			JOptionPane.showMessageDialog(
+					null,
+					"Invalid input. Try again",
+					"Error",
+					JOptionPane.ERROR_MESSAGE
+					);
+			return;
 		}
-		else if (d.trim().equalsIgnoreCase("M")) {
-			IO.print("Enter time in months: ");
-			t = Double.parseDouble(IO.readln());
-			t = calculateMonthsToYears(t);
-		} 
-		else if (d.trim().equalsIgnoreCase("Y")) {
-			IO.print("Enter time in years: ");
-			t = Double.parseDouble(IO.readln());
 		}
-		else {
-			IO.println("Invalid input, please try again.");
-			return 0;
-		}
-	
-		double interest = p * (r / 100.0) * t;
-		return interest;
+		
+
 	}
-	double calculateDaysToYears(double t, int d) {
-		t = t / d;
-		return t;
+
+	public static double calculateSimpleInterest(double p, double r, double t) {
+
+		return 0;
 	}
-	double calculateMonthsToYears(double t) {
-		t = t / 12;
-		return t;
-	}
-	double calculateTime(double i, double p, double r) {
-		r = r / 100.0;
-		double time = i/(p*r);
-		return time;
-	}
-	
 }
