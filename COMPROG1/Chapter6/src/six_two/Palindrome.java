@@ -13,8 +13,9 @@ public class Palindrome {
 	}
 	public static boolean isPalindrome(String str) {
 		String reversed = "";
-		// Regex pattern: replace all whitespaces 
+		// Regex pattern: replace all whitespaces
 		str = str.replaceAll("\\s+", "");
+		// Regex pattern: replace all punctuation
 		str = str.replaceAll("\\p{Punct}","");
 		for (int i = str.length() - 1; i >= 0; i--)
 			reversed += str.charAt(i);
