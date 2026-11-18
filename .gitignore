@@ -29,7 +29,6 @@ replay_pid*
 # Eclipse project metadata
 .settings/
 .classpath
-.project
 
 # Compiled output
 bin/
