@@ -9,7 +9,7 @@ public class TypeOfTransaction {
 
 	}
 
-	public static void customerMenu(int idx) {
+	/*public static void customerMenu(int idx) {
 		// comment: why did you use while (true)? 
 		while (true) {
 			// comment: what is HEAD?
@@ -18,7 +18,6 @@ public class TypeOfTransaction {
 							+ "D -> Deposit\n" + "T -> Transfer Fund\n" + "C -> Cancel\n\n"
 							+ "Enter Transaction Type: ",
 					"RGBC", JOptionPane.QUESTION_MESSAGE);
-
 			if (t == null || t.equalsIgnoreCase("C")) {
 				return;
 			}
@@ -35,10 +34,11 @@ public class TypeOfTransaction {
 				// transferScreen(idx);
 			} else {
 				// comment: what is HEAD?
-				JOptionPane.showMessageDialog(null, HEAD + "Invalid transaction type.", "RGBC",
-						JOptionPane.ERROR_MESSAGE);
+				//JOptionPane.showMessageDialog(null, HEAD + "Invalid transaction type.", "RGBC",
+						//JOptionPane.ERROR_MESSAGE);
 			}
 		}
-	}
+		*/
+
 
 }

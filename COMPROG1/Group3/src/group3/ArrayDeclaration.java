@@ -2,7 +2,7 @@ package group3;
 
 import javax.swing.JOptionPane;
 
-public class ArrayDeclaration_1 {
+public class ArrayDeclaration {
 	// Default Bank name na lalabas sa lahat ng JOptionpane
 	// comment: subject to change based sa final deliberation w/ the group. 
 	public static final String BANK_NAME = "Ainsworth Trust & Savings";
@@ -22,10 +22,10 @@ public class ArrayDeclaration_1 {
 		
 		// comment: 2D array including all account information. i learned this is a better approach than
 		// using multiple arrays to hold information. Good!
-		accounts = new String[][] { { "10001", "Ezekiel Pagco", "5000.00", "1617", "Active" },
-				{ "10002", "Xandler Yaries Zafe", "25000.00", "6969", "Active" },
-				{ "10003", "Shaun Yuri Baruela", "500.00", "2008", "Blocked" },
-				{ "99999", "System Administrator", "0.00", "0000", "Admin" } };
+		accounts = new String[][] { { "10001", "Ezekiel Pagco", "5000.00", "1617", "Active", "Customer" },
+				{ "10002", "Xandler Yaries Zafe", "25000.00", "6969", "Active", "Customer" },
+				{ "10003", "Shaun Yuri Baruela", "500.00", "2008", "Blocked", "Customer" },
+				{ "99999", "System Administrator", "0.00", "0000", "Active", "Admin" } };
 	}
 
 	// For test and display ng array gamit ung required na JOption format

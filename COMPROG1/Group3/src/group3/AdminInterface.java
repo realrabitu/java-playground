@@ -7,9 +7,9 @@ public class AdminInterface {
 	}
 	public static void adminMenu() {
         boolean running = true;
-        // comment: why while loop? how about do-while?
+        // comment: explain the usage for while loop 
         while (running) {
-        	// comment: pre-formatted string. okay
+        	// pre-formatted string
             String menu = "RGBC\n"
                     + "Richard Gwapo Banking Corporation\n\n"
                     + "What would you like to do?\n"
@@ -24,7 +24,7 @@ public class AdminInterface {
                     + "Enter your choice:";
             String choice = JOptionPane.showInputDialog(null, 
             		menu,											   // message
-                    ArrayDeclaration_1.BANK_NAME + " | Administrator", // title
+                    ArrayDeclaration.BANK_NAME + " | Administrator", // title
                     JOptionPane.PLAIN_MESSAGE);
             // Cancel button or closing the window is treated as X
             if (choice == null) {
@@ -60,7 +60,7 @@ public class AdminInterface {
                 default:
                     JOptionPane.showMessageDialog(null,
                             "Invalid choice. Please enter 1-7 or X.",
-                            ArrayDeclaration_1.BANK_NAME, JOptionPane.ERROR_MESSAGE);
+                            ArrayDeclaration.BANK_NAME, JOptionPane.ERROR_MESSAGE);
             }
         }
     }
