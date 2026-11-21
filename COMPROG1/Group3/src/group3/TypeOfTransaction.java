@@ -5,16 +5,16 @@ import javax.swing.JOptionPane;
 public class TypeOfTransaction {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		customerMenu(1);
 
 	}
 
-	/*public static void customerMenu(int idx) {
-		// comment: why did you use while (true)? 
+	public static void customerMenu(int idx) {
+		 
 		while (true) {
-			// comment: what is HEAD?
+			
 			String t = JOptionPane.showInputDialog(null,
-					HEAD + "SELECT TYPE OF TRANSACTION\n" + "B -> Balance Inquiry\n" + "W -> Withdrawal\n"
+					Array.BANK_NAME + "SELECT TYPE OF TRANSACTION\n" + "B -> Balance Inquiry\n" + "W -> Withdrawal\n"
 							+ "D -> Deposit\n" + "T -> Transfer Fund\n" + "C -> Cancel\n\n"
 							+ "Enter Transaction Type: ",
 					"RGBC", JOptionPane.QUESTION_MESSAGE);
@@ -38,7 +38,5 @@ public class TypeOfTransaction {
 						//JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		*/
-
-
+	}
 }

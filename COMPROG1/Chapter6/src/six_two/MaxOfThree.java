@@ -12,7 +12,7 @@ public class MaxOfThree {
 		System.out.println(max(a,b,c));
 		//System.out.println(max(-5, -1, -8));
 		//System.out.println(max(7, 7, 3));
-		
+		sc.close();
 	}
 
 	public static int max(int a, int b, int c) {

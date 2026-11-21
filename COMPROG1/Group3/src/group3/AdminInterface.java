@@ -24,7 +24,7 @@ public class AdminInterface {
                     + "Enter your choice:";
             String choice = JOptionPane.showInputDialog(null, 
             		menu,											   // message
-                    ArrayDeclaration.BANK_NAME + " | Administrator", // title
+                    Array.BANK_NAME + " | Administrator", // title
                     JOptionPane.PLAIN_MESSAGE);
             // Cancel button or closing the window is treated as X
             if (choice == null) {
@@ -60,7 +60,7 @@ public class AdminInterface {
                 default:
                     JOptionPane.showMessageDialog(null,
                             "Invalid choice. Please enter 1-7 or X.",
-                            ArrayDeclaration.BANK_NAME, JOptionPane.ERROR_MESSAGE);
+                            Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
             }
         }
     }

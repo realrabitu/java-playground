@@ -2,7 +2,7 @@ package group3;
 
 import javax.swing.JOptionPane;
 
-public class ArrayDeclaration {
+public class Array {
 	// Default Bank name na lalabas sa lahat ng JOptionpane
 	// comment: subject to change based sa final deliberation w/ the group. 
 	public static final String BANK_NAME = "Ainsworth Trust & Savings";

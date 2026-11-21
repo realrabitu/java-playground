@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Login {
 	public static void main(String[] args) {
-		ArrayDeclaration.initializeAccounts();
+		Array.initializeAccounts();
 		boolean hasExited = false;
 		do {
 			int index = login();
@@ -18,11 +18,11 @@ public class Login {
 			} else if (index == -3) {
 				JOptionPane.showMessageDialog(null, "Account is blocked.", "RGBC - Richard Gwapo Banking Corporation",
 						JOptionPane.ERROR_MESSAGE);
-			} else if (ArrayDeclaration.accounts[index][5].equals("Admin")) {
+			} else if (Array.accounts[index][5].equals("Admin")) {
 				AdminInterface.adminMenu();
 				
 			} else {
-				JOptionPane.showMessageDialog(null, "Welcome, " + ArrayDeclaration.accounts[index][1] + "!",
+				JOptionPane.showMessageDialog(null, "Welcome, " + Array.accounts[index][1] + "!",
 						"RGBC - Richard Gwapo Banking Corporation", JOptionPane.PLAIN_MESSAGE);
 			}
 		} while (!hasExited);
@@ -45,9 +45,9 @@ public class Login {
 			if (accNo == null)
 				return -1;
 			accNo = accNo.trim();
-			for (int i = 0; i < ArrayDeclaration.accounts.length; i++) {
+			for (int i = 0; i < Array.accounts.length; i++) {
 
-				if (accNo.equals(ArrayDeclaration.accounts[i][0])) {
+				if (accNo.equals(Array.accounts[i][0])) {
 					accountIndex = i;
 					break;
 				}
@@ -58,16 +58,16 @@ public class Login {
 			}
 		} while (accountIndex == -1);
 
-		if (ArrayDeclaration.accounts[accountIndex][4].equals("Blocked"))
+		if (Array.accounts[accountIndex][4].equals("Blocked"))
 			return -3;
-		if (ArrayDeclaration.accounts[accountIndex][5].equals("Admin")) {
+		if (Array.accounts[accountIndex][5].equals("Admin")) {
 			int attempts = 3;
 			do {
 				String pin = JOptionPane.showInputDialog(null, "LOGIN\nEnter your pin number:", title,
 						JOptionPane.PLAIN_MESSAGE);
 				if (pin == null)
 					return -1;
-				if (pin.trim().equals(ArrayDeclaration.accounts[accountIndex][3]))
+				if (pin.trim().equals(Array.accounts[accountIndex][3]))
 					return accountIndex;
 				else {
 					attempts--;
@@ -84,7 +84,7 @@ public class Login {
 						JOptionPane.PLAIN_MESSAGE);
 				if (pin == null)
 					return -1;
-				if (pin.trim().equals(ArrayDeclaration.accounts[accountIndex][3]))
+				if (pin.trim().equals(Array.accounts[accountIndex][3]))
 					return accountIndex;
 				else {
 					attempts--;
@@ -93,7 +93,7 @@ public class Login {
 							JOptionPane.WARNING_MESSAGE);
 				}
 				if (attempts == 0) {
-					ArrayDeclaration.accounts[accountIndex][4] = "Blocked";
+					Array.accounts[accountIndex][4] = "Blocked";
 					JOptionPane.showMessageDialog(null,
 							"You have exceeded the maximum number of attempts.\n"
 									+ "Your account has been blocked for logging in.\n"
