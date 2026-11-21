@@ -22,11 +22,19 @@ public class Array {
 		
 		// comment: 2D array including all account information. i learned this is a better approach than
 		// using multiple arrays to hold information. Good!
-		accounts = new String[][] { { "10001", "Ezekiel Pagco", "5000.00", "1617", "Active", "Customer" },
+		/*accounts = new String[][] { { "10001", "Ezekiel Pagco", "5000.00", "1617", "Active", "Customer" },
 				{ "10002", "Xandler Yaries Zafe", "25000.00", "6969", "Active", "Customer" },
 				{ "10003", "Shaun Yuri Baruela", "500.00", "2008", "Blocked", "Customer" },
-				{ "99999", "System Administrator", "0.00", "0000", "Active", "Admin" } };
-	}
+				{ "99999", "System Administrator", "0.00", "0000", "Active", "Admin" } };*/
+		accounts = new String[][] {
+		    { "0123-4567-8901", "Roel Richard",         "5000.00",  "1111", "Active",  "Customer" },
+		    { "2345-6789-0123", "Dorie Marie",          "0.00",     "2222", "Blocked", "Customer" },
+		    { "3456-7890-1234", "Railee Darrel",        "10000.00", "3333", "Active",  "Customer" },
+		    { "4567-8901-2345", "Railynne Dessirei",    "2500.00",  "4444", "Active",  "Customer" },
+		    { "5678-9012-3456", "Raine Dessirei",       "10000.00", "5555", "Active",  "Customer" },
+		    { "0000-000-0000",  "System Administrator", "0.00",     "0000", "Active",  "Admin" } };
+		}
+
 
 	// For test and display ng array gamit ung required na JOption format
 	

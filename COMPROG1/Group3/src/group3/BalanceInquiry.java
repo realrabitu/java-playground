@@ -1,4 +1,21 @@
 package group3;
+import javax.swing.JOptionPane;
+public class BalanceInquiry {
+   public static void showBalance(int idx) {
+       String x;
+       do {
+           x = JOptionPane.showInputDialog(null,
+                   "BALANCE INQUIRY\n"
+                           + "Account #: " + Array.accounts[idx][0] + "\n"
+                           + "Account Name: " + Array.accounts[idx][1] + "\n"
+                           + "Balance: " + String.format("%.2f", Double.parseDouble(Array.accounts[idx][2])) + "\n\n"
+                           + "Press X to Exit",
+                   Array.BANK_NAME, JOptionPane.PLAIN_MESSAGE);
+       } while (x != null && !x.trim().equalsIgnoreCase("X"));
+   }
+}
+
+/*package group3;
 
 import java.util.ArrayList;
 
@@ -31,4 +48,4 @@ public class BalanceInquiry {
 	   
 
 
-}
+}*/

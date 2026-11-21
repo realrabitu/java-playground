@@ -1,16 +1,11 @@
 package group3;
-
 import javax.swing.JOptionPane;
-
 public class TypeOfTransaction {
-
 	public static void main(String[] args) {
 		customerMenu(1);
-
 	}
-
 	public static void customerMenu(int idx) {
-		 
+		
 		while (true) {
 			
 			String t = JOptionPane.showInputDialog(null,
@@ -21,22 +16,20 @@ public class TypeOfTransaction {
 			if (t == null || t.equalsIgnoreCase("C")) {
 				return;
 			}
-
-			t.trim();
-
+			t = t.trim();
 			if (t.equalsIgnoreCase("B")) {
-				// balanceInquiry(idx); 
+			    BalanceInquiry.showBalance(idx);
 			} else if (t.equalsIgnoreCase("W")) {
-				// withdraw(idx);
+			    Withdrawal.withdraw(idx);
 			} else if (t.equalsIgnoreCase("D")) {
-				// deposit(idx);
+			    Deposit.deposit(idx);
 			} else if (t.equalsIgnoreCase("T")) {
-				// transferScreen(idx);
-			} else {
-				// comment: what is HEAD?
-				//JOptionPane.showMessageDialog(null, HEAD + "Invalid transaction type.", "RGBC",
-						//JOptionPane.ERROR_MESSAGE);
+			    TransferFund.transferFund(idx);
+			
 			}
 		}
 	}
 }
+
+
+
