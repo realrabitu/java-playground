@@ -3,6 +3,7 @@ import javax.swing.JOptionPane;
 
 public class AdminInterface {
 	public static void main(String[] args) {
+		Array.initializeAccounts();
 		adminMenu();
 	}
 	public static void adminMenu() {
@@ -10,8 +11,8 @@ public class AdminInterface {
         // comment: explain the usage for while loop 
         while (running) {
         	// pre-formatted string
-            String menu = "RGBC\n"
-                    + "Richard Gwapo Banking Corporation\n\n"
+            String menu = "Ainsworth\n"
+                    + "Ainsworth Trust & Savings\n\n"
                     + "What would you like to do?\n"
                     + "( 1 ) - View Customer Information\n"
                     + "( 2 ) - Search Customer\n"
@@ -34,16 +35,16 @@ public class AdminInterface {
             choice = choice.trim().toUpperCase();
             switch (choice) {
                 case "1":
-                    //viewCustomerInformation();
+                    Admin1_2.viewAllCustomers();
                     break;
                 case "2":
-                    //searchCustomer();
+                    Admin1_2.searchCustomer();
                     break;
                 case "3":
-                    //addNewCustomer();
+                    Admin3_4.addNewCustomer();
                     break;
                 case "4":
-                    //editCustomerInformation();
+                    Admin3_4.editCustomer();
                     break;
                 case "5":
                    // changeCustomerPin();
@@ -52,7 +53,7 @@ public class AdminInterface {
                     //adminTransferFund();
                     break;
                 case "7":
-                    //activateBlockAccount();
+                    Admin7.setStatus();
                     break;
                 case "X":
                     running = false; // back to Output #1 (main menu)
@@ -64,6 +65,4 @@ public class AdminInterface {
             }
         }
     }
-	
-	
 }

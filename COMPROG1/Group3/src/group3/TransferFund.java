@@ -1,18 +1,13 @@
 package group3;
+
 import javax.swing.JOptionPane;
 
 // Output #4-T : Transfer Fund (Suganob and Veluz)
 public class TransferFund {
-
- 
-    // PLACEHOLDER lang ito para tumakbo ang file.
-    // Pag i-merge na, burahin ito at gamitin yung array ni Baruela.
-    // Order: Account Number, Account Name, Balance, PIN, Status
-  
     // Hanapin ang account gamit ang account number. Return -1 kung wala.
     static int findAccount(String accNum) {
-        for (int i = 0; i < Array.accounts.length; i++) {
-            if (Array.accounts[i][0].equals(accNum)) {
+        for (int i = 0; i < Array.accounts.size(); i++) {
+            if (Array.accounts.get(i)[0].equals(accNum)) {
                 return i;
             }
         }
@@ -21,12 +16,12 @@ public class TransferFund {
 
     // Kunin ang balance bilang number
     static double getBalance(int i) {
-        return Double.parseDouble(Array.accounts[i][2]);
+        return Double.parseDouble(Array.accounts.get(i)[2]);
     }
 
     // I-update ang balance
     static void setBalance(int i, double newBalance) {
-        Array.accounts[i][2] = String.format("%.2f", newBalance);
+        Array.accounts.get(i)[2] = String.format("%.2f", newBalance);
     }
 
     // Output #4-T: Transfer Fund
@@ -115,7 +110,7 @@ public class TransferFund {
             setBalance(recipient, getBalance(recipient) + amount); // recipient: amount lang
 
             JOptionPane.showMessageDialog(null,
-                    "Transfer successful!\nSent to: " + Array.accounts[recipient][1]
+                    "Transfer successful!\nSent to: " + Array.accounts.get(recipient)[1]
                     + "\nAmount: P" + String.format("%,.2f", amount)
                     + "\nFee: P" + String.format("%,.2f", fee)
                     + "\nNew balance: P" + String.format("%,.2f", getBalance(sender)),
@@ -126,9 +121,8 @@ public class TransferFund {
     }
 
     // Pang-test lang. Burahin pag i-merge na.
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Array.initializeAccounts();
     	transferFund(0); // naka-login bilang 1001
-    }
+    }*/
 }
-
