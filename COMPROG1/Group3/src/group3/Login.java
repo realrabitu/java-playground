@@ -1,6 +1,9 @@
 package group3;
 
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 public class Login {
@@ -59,9 +62,16 @@ public class Login {
 	}
 
 	private static String askForHiddenPin(String title) {
-		JPasswordField pinField = new JPasswordField();
-		int result = JOptionPane.showConfirmDialog(null, pinField,
-				title + "\nEnter your PIN:", JOptionPane.OK_CANCEL_OPTION,
+		JLabel label = new JLabel("Enter your 4-digit PIN:");
+		JPasswordField pinField = new JPasswordField(4);
+		pinField.setToolTipText("Enter your 4-digit PIN");
+
+		JPanel panel = new JPanel(new BorderLayout(5, 5));
+		panel.add(label, BorderLayout.NORTH);
+		panel.add(pinField, BorderLayout.CENTER);
+
+		int result = JOptionPane.showConfirmDialog(null, panel,
+				title + " - Login", JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.PLAIN_MESSAGE);
 
 		if (result != JOptionPane.OK_OPTION)
