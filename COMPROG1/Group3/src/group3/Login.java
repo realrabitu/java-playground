@@ -7,16 +7,19 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 public class Login {
+	// Authenticates an account and returns: account index, -1 cancel, -2 attempts exceeded, or -3 blocked.
 	public static int login() {
 		String title = Array.BANK_NAME;
 		int accountIndex = -1;
 
+		// Repeat account lookup until a matching account is entered or login is cancelled.
 		do {
 			String accNo = JOptionPane.showInputDialog(null, "LOGIN\nEnter your account number:", title,
 					JOptionPane.PLAIN_MESSAGE);
 			if (accNo == null)
 				return -1;
 
+			// Format input consistently before comparing it with stored account numbers.
 			accNo = DashFormatter.format(accNo.trim());
 			for (int i = 0; i < Array.accounts.size(); i++) {
 				if (accNo.equals(Array.accounts.get(i)[0])) {
@@ -31,6 +34,7 @@ public class Login {
 		} while (accountIndex == -1);
 
 		String[] account = Array.accounts.get(accountIndex);
+		// Blocked accounts cannot proceed to PIN entry or transactions.
 		if (account[4].equals("Blocked"))
 			return -3;
 
@@ -48,6 +52,7 @@ public class Login {
 						"Invalid PIN. Try again.\n" + "You have " + attempts + " attempts remaining.", title,
 						JOptionPane.WARNING_MESSAGE);
 
+				// Three failed customer attempts block the account and end login.
 				if (attempts == 0 && account[5].equals("Customer")) {
 					account[4] = "Blocked";
 					JOptionPane.showMessageDialog(null,
@@ -61,6 +66,7 @@ public class Login {
 		return -2;
 	}
 
+	// Displays a masked PIN field instead of a plain text input dialog.
 	private static String askForHiddenPin(String title) {
 		JLabel label = new JLabel("Enter your 4-digit PIN:");
 		JPasswordField pinField = new JPasswordField(4);

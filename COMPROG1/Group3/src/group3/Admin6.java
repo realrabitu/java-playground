@@ -59,6 +59,14 @@ public class Admin6 {
             return;
         }
 
+        // Reject malformed special values before changing account balances.
+        if (Double.isNaN(amount) || Double.isInfinite(amount)) {
+            JOptionPane.showMessageDialog(null,
+                    "Invalid amount. Please enter a valid number.",
+                    Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         if (amount <= 0 || amount > sourceBalance) {
             JOptionPane.showMessageDialog(null,
                     "Invalid amount or insufficient balance!",

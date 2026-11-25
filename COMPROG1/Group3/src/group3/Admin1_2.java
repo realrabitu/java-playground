@@ -3,6 +3,7 @@ package group3;
 import javax.swing.JOptionPane;
 
 public class Admin1_2 {
+	// Displays all records whose account type is Customer; admin records are omitted.
 	static void viewAllCustomers() {
 		String list = "";
 		for (int i = 0; i < Array.accounts.size(); i++) {

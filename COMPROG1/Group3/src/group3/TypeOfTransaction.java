@@ -1,6 +1,7 @@
 package group3;
 import javax.swing.JOptionPane;
 public class TypeOfTransaction {
+	// Route a logged-in customer to the selected transaction screen.
 	public static void customerMenu(int idx) {
 		while (true) {
 			String t = JOptionPane.showInputDialog(null,

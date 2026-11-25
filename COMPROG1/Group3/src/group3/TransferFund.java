@@ -96,6 +96,15 @@ public class TransferFund {
                 continue;
             }
 
+            // Reject malformed special numeric values such as NaN and Infinity.
+            if (Double.isNaN(amount) || Double.isInfinite(amount)) {
+                JOptionPane.showMessageDialog(null,
+                        "Invalid amount. Please enter a valid number.",
+                        Array.BANK_NAME,
+                        JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
+
             // Minimum P1,000
             if (amount < 1000) {
                 JOptionPane.showMessageDialog(null, 

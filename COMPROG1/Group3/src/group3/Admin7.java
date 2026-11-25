@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 public class Admin7 {
 	static final String HEAD = Array.BANK_NAME + "\n\n";
 
+	// Let an admin activate or block an existing account.
 	static void setStatus() {
 		int i = askAccount("ACTIVATE/BLOCK ACCOUNT\n\nEnter account #:\n(Cancel or X to Exit)");
 		if (i == -1)

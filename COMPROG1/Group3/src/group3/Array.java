@@ -4,20 +4,15 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Array {
-	// Default Bank name na lalabas sa lahat ng JOptionpane
-	// comment: subject to change based sa final deliberation w/ the group. 
+	// Shared bank name used as the title for JOptionPane screens.
+	// The static ArrayList stores every account while the program is running.
+	// Column order: account number, name, balance, PIN, status, account type.
 	public static final String BANK_NAME = "Ainsworth Trust & Savings";
 	
 	public static ArrayList<String[]> accounts;
-	// Dito mo in-initialize o nilagyan ng laman yung accounts array
+
+	// Initializes sample customer and administrator records on program startup.
 	public static void initializeAccounts() {
-		// May sample data narin siya nakalagay bow haha
-		// Added narin dito ung ADMIN ACCOUNT
-		/*accounts = new String[][] { { "10001", "Ezekiel Pagco", "5000.00", "1617", "Active", "Customer" },
-				{ "10002", "Xandler Yaries Zafe", "25000.00", "6969", "Active", "Customer" },
-				{ "10003", "Shaun Yuri Baruela", "500.00", "2008", "Blocked", "Customer" },
-				{ "99999", "System Administrator", "0.00", "0000", "Active", "Admin" } };*/
-		// Account column order: number, name, balance, PIN, status, type
 		accounts = new ArrayList<String[]>();
 		accounts.add(new String[] { "0123-4567-8901", "Roel Richard", "5000.00", "1111", "Active", "Customer" });
 		accounts.add(new String[] { "2345-6789-0123", "Dorie Marie", "0.00", "2222", "Blocked", "Customer" });
@@ -27,9 +22,8 @@ public class Array {
 		accounts.add(new String[] { "0000-0000-0000", "System Administrator", "0.00", "0000", "Active", "Admin" });
 	}
 	
-	// For test and display ng array gamit ung required na JOption format
+	// Displays all account records for database/testing purposes.
 	public static void verifyAccounts() {
-		// comment: be sure to be able to explain the usage of stringbuilder here and the methods
 		StringBuilder accountsDisplay = new StringBuilder("System Database Initialization:\n\n");
 
 		for (String[] account : accounts) {
@@ -42,9 +36,7 @@ public class Array {
 					.append("---------------------------\n");
 		}
 
-		// Dito nakalagay ung Bank Name variable na mag ppop-up
 		JOptionPane.showMessageDialog(null, accountsDisplay.toString(),
 				BANK_NAME + " - Database Check", JOptionPane.INFORMATION_MESSAGE);
 	}
-
 }

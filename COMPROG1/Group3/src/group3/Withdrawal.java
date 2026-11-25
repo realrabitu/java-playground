@@ -3,6 +3,7 @@ package group3;
 import javax.swing.JOptionPane;
 
 public class Withdrawal {
+	// Repeatedly validate a withdrawal before subtracting the amount from the balance.
 	public static void withdraw(int idx) {
 		while (true) {
 			String input = JOptionPane.showInputDialog(null,
@@ -15,14 +16,19 @@ public class Withdrawal {
 				double amount = Double.parseDouble(input.trim());
 				String[] account = Array.accounts.get(idx);
 				double balance = Double.parseDouble(account[2]);
+				// Validate the withdrawal amount
 				if (amount < 100 || amount % 100 != 0) {
 					JOptionPane.showMessageDialog(null,
 							"Invalid amount! Must be at least P100 and in P100 denominations.",
 							Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
-				} else if (amount > balance) {
+				} 
+				// Check for sufficient balance
+				else if (amount > balance) {
 					JOptionPane.showMessageDialog(null, "Insufficient balance.",
 							Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
-				} else {
+				} 
+				// Update the balance and show success message
+				else {
 					double newBalance = balance - amount;
 					account[2] = String.format("%.2f", newBalance);
 					JOptionPane.showMessageDialog(null,

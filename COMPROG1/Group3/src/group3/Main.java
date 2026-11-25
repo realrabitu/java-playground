@@ -4,34 +4,38 @@ import javax.swing.JOptionPane;
 
 public class Main {
 	public static void main(String[] args) {
-		Array.initializeAccounts();          // load the account table once
+		// Load initial in-memory account data before any login/transaction flow.
+		Array.initializeAccounts();
 		
 		boolean running = true;
+		// Main application loop: show menu, process login, then route by account type.
 		while (running) {
-			char choice = MainMenu.mainMenu();            // Output #1
+			char choice = MainMenu.mainMenu(); // Output #1 (Main Menu)
 
-			if (choice == 'Q') {        // USER QUITS
+			if (choice == 'Q') { // User exits from the first menu
 				JOptionPane.showMessageDialog(null,
 						"Thank you for using Ainsworth Banking Corporation!",
 						Array.BANK_NAME, JOptionPane.INFORMATION_MESSAGE);
 				running = false;
-			} else {                    // USER SELECTS START TRANSACTION
-				int idx = Login.login();                  // Output #2
+			} else { // User starts transaction flow and proceeds to login
+				int index = Login.login(); // Output #2 (Login window)
 
-				if (idx == -1) {
-					// user cancelled -> back to Output #1
-				} else if (idx == -2) {
+				if (index == -1) {
+					// Cancel/login-back action: return to Output #1.
+				} else if (index == -2) {
+					// Too many wrong PIN attempts (captured-card scenario).
 					JOptionPane.showMessageDialog(null,
 							"CAPTURED CARD.... PLEASE CALL 143-44",
 							Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
-				} else if (idx == -3) {
+				} else if (index == -3) {
+					// Account status is already blocked before entering transactions.
 					JOptionPane.showMessageDialog(null,
 							"Account is blocked.",
 							Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
-				} else if (Array.accounts.get(idx)[5].equals("Admin")) {
-					AdminInterface.adminMenu();           // Output #5
+				} else if (Array.accounts.get(index)[5].equals("Admin")) {
+					AdminInterface.adminMenu(); // Output #5
 				} else {
-					TypeOfTransaction.customerMenu(idx);  // Output #3
+					TypeOfTransaction.customerMenu(index); // Output #3
 				}
 			}
 		}

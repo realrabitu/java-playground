@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Admin3_4 {
 
+	// Search the shared account table and return the matching row index.
 	static int findAccount(String accNo) {
 		for (int i = 0; i < Array.accounts.size(); i++) {
 			if (Array.accounts.get(i)[0].equals(accNo)) {
@@ -13,7 +14,7 @@ public class Admin3_4 {
 		return -1;
 	}
 	
-	// Option 3: Magdagdag ng bagong customer
+	// Option 3: Add a customer after validating account number, name, and PIN.
 	static void addNewCustomer() {
 		String accNo = JOptionPane.showInputDialog(null,
 				"Enter new Account Number (X to go back):",
