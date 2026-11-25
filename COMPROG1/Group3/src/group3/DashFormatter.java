@@ -1,15 +1,21 @@
 package group3;
-import javax.swing.JOptionPane;
 
 public class DashFormatter {
 
-    // Convert an account number to groups of four digits separated by dashes.
+    // Convert exactly 12 account digits into groups of four separated by dashes.
     public static String format(String input) {
-        // Remove all non-digit characters from the input
-        String digits = input.replaceAll("\\D", "");
-        StringBuilder sb = new StringBuilder();
+        if (input == null) {
+            return "";
+        }
 
-        // Iterate over the digits and add a dash after every four digits
+        // Formatting is safe only after validation, but this method also removes
+        // ordinary dashes so undashed input can match stored account numbers.
+        String digits = input.replaceAll("[\\-\\s]", "");
+        if (!digits.matches("\\d{12}")) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < digits.length(); i++) {
             if (i > 0 && i % 4 == 0) {
                 sb.append('-');
@@ -19,14 +25,16 @@ public class DashFormatter {
         return sb.toString();
     }
 
-    /*public static void main(String[] args) {
-        String input = JOptionPane.showInputDialog(null, "Enter number:");
-
+    // Valid input contains only digits/dashes and exactly 12 digits.
+    public static boolean isValidAccountNumber(String input) {
         if (input == null) {
-            return; // user pressed Cancel or closed the dialog
+            return false;
         }
-
-        String result = format(input);
-        JOptionPane.showMessageDialog(null, "Formatted: " + result);
-    }*/
+        String trimmed = input.trim();
+        if (!trimmed.matches("[0-9-]+")) {
+            return false;
+        }
+        String digits = trimmed.replace("-", "");
+        return digits.matches("\\d{12}");
+    }
 }

@@ -16,6 +16,14 @@ public class Admin5 {
                 return;
             }
 
+            // Validate account number format (exactly 12 digits).
+            if (!DashFormatter.isValidAccountNumber(accNum)) {
+                JOptionPane.showMessageDialog(null,
+                        "Account number must contain exactly 12 digits.",
+                        Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
+
             // Normalize input (with/without dashes) so lookup matches stored format.
             index = findCustomerAccount(DashFormatter.format(accNum.trim()));
 

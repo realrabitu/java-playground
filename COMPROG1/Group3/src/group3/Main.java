@@ -21,7 +21,7 @@ public class Main {
 				int index = Login.login(); // Output #2 (Login window)
 
 				if (index == -1) {
-					// Cancel/login-back action: return to Output #1.
+					// Cancel/login-back action: return to start of while loop
 				} else if (index == -2) {
 					// Too many wrong PIN attempts (captured-card scenario).
 					JOptionPane.showMessageDialog(null,

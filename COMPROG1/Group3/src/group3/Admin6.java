@@ -15,8 +15,16 @@ public class Admin6 {
                 Array.BANK_NAME, JOptionPane.QUESTION_MESSAGE);
         if (destination == null) return;
 
-        int s = findAccount(source.trim());
-        int d = findAccount(destination.trim());
+        if (!DashFormatter.isValidAccountNumber(source)
+                || !DashFormatter.isValidAccountNumber(destination)) {
+            JOptionPane.showMessageDialog(null,
+                    "Account number must contain exactly 12 digits.",
+                    Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int s = findAccount(DashFormatter.format(source.trim()));
+        int d = findAccount(DashFormatter.format(destination.trim()));
 
         if (s == -1 || d == -1 || s == d) {
             JOptionPane.showMessageDialog(null,
@@ -35,11 +43,10 @@ public class Admin6 {
 
         if (Array.accounts.get(s)[4].equalsIgnoreCase("Blocked")
                 || Array.accounts.get(d)[4].equalsIgnoreCase("Blocked")) {
-            int choice = JOptionPane.showConfirmDialog(null,
-                    "An account is blocked. Allow transfer?",
-                    "Admin Authorization",
-                    JOptionPane.YES_NO_OPTION);
-            if (choice != JOptionPane.YES_OPTION) return;
+            JOptionPane.showMessageDialog(null,
+                    "Blocked accounts cannot send or receive funds.",
+                    Array.BANK_NAME, JOptionPane.WARNING_MESSAGE);
+            return;
         }
 
         String input = JOptionPane.showInputDialog(null,

@@ -23,25 +23,48 @@ public class Admin1_2 {
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
-	// Option 2: Hanapin ang customer gamit ang account number O pangalan
-	// Kapag nag-type ng X o Cancel, babalik sa admin menu
+	// Option 2: Search customer records by account number or name.
 	static void searchCustomer() {
 		while (true) {
 			String key = JOptionPane.showInputDialog(null,
 					"Enter Account Number or Name (X to go back):",
 					Array.BANK_NAME, JOptionPane.QUESTION_MESSAGE);
-			// X o Cancel = balik sa admin menu
+			// X or Cancel returns to the administrator menu.
 			if (key == null || key.equalsIgnoreCase("X")) {
 				return;
 			}
-			key = key.trim().toLowerCase();
+
+			key = key.trim();
+			if (key.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Please enter an account number or name.",
+						Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
+				continue;
+			}
+
+			// Format account-number searches consistently; names remain unchanged.
+			boolean isAccountSearch = key.matches("[0-9-]+");
+			String formattedKey = isAccountSearch ? DashFormatter.format(key) : "";
+			if (isAccountSearch && !DashFormatter.isValidAccountNumber(key)) {
+				JOptionPane.showMessageDialog(null,
+						"Account number must contain exactly 12 digits.",
+						Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
+				continue;
+			}
+
 			String result = "";
-			// Hanapin sa lahat ng accounts (kahit part lang ng pangalan okay na)
+			String lowerKey = key.toLowerCase();
+			// Search only customer records; never return the administrator account.
 			for (int i = 0; i < Array.accounts.size(); i++) {
 				String[] account = Array.accounts.get(i);
-				boolean sameNumber = account[0].toLowerCase().equals(key);
-				boolean sameName = account[1].toLowerCase().contains(key);
-				if (!key.isEmpty() && (sameNumber || sameName)) {
+				if (account[5].equalsIgnoreCase("Admin")) {
+					continue;
+				}
+
+				boolean sameNumber = isAccountSearch
+						&& account[0].equals(formattedKey);
+				boolean sameName = !isAccountSearch
+						&& account[1].toLowerCase().contains(lowerKey);
+				if (sameNumber || sameName) {
 					result += "Account No.: " + account[0] + "\n"
 							+ "Name: " + account[1] + "\n"
 							+ "Balance: P" + account[2] + "\n"

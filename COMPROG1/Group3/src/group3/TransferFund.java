@@ -6,8 +6,9 @@ import javax.swing.JOptionPane;
 public class TransferFund {
     // Hanapin ang account gamit ang account number. Return -1 kung wala.
     static int findAccount(String accNum) {
+        String formatted = DashFormatter.format(accNum);
         for (int i = 0; i < Array.accounts.size(); i++) {
-            if (Array.accounts.get(i)[0].equals(accNum)) {
+            if (Array.accounts.get(i)[0].equals(formatted)) {
                 return i;
             }
         }
@@ -49,6 +50,14 @@ public class TransferFund {
                 return;
             }
 
+            if (!DashFormatter.isValidAccountNumber(accNum)) {
+                JOptionPane.showMessageDialog(null,
+                        "Account number must contain exactly 12 digits.",
+                        Array.BANK_NAME,
+                        JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
+
             recipient = findAccount(accNum.trim());
 
             if (recipient == -1) {
@@ -64,6 +73,11 @@ public class TransferFund {
             } else if (Array.accounts.get(recipient)[5].equalsIgnoreCase("Admin")) {
                 JOptionPane.showMessageDialog(null,
                         "The administrator account cannot receive funds.",
+                        Array.BANK_NAME,
+                        JOptionPane.WARNING_MESSAGE);
+            } else if (Array.accounts.get(recipient)[4].equalsIgnoreCase("Blocked")) {
+                JOptionPane.showMessageDialog(null,
+                        "This account is blocked and cannot receive funds.",
                         Array.BANK_NAME,
                         JOptionPane.WARNING_MESSAGE);
             } else {

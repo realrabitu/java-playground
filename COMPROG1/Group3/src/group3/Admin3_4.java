@@ -89,6 +89,12 @@ public class Admin3_4 {
 					Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		String digitsOnly = accNo.replaceAll("-", "");
+		if (!digitsOnly.matches("\\d{12}")) {
+			JOptionPane.showMessageDialog(null, "Account number must contain exactly 12 digits.",
+					Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
 		accNo = DashFormatter.format(accNo);
 		int index = findAccount(accNo);
@@ -99,6 +105,15 @@ public class Admin3_4 {
 		}
 
 		String[] account = Array.accounts.get(index);
+
+		// The administrator record is system data and cannot be edited as a customer.
+		if (account[5].equalsIgnoreCase("Admin")) {
+			JOptionPane.showMessageDialog(null,
+					"The system administrator account cannot be edited.",
+					Array.BANK_NAME, JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+
 		String newName = JOptionPane.showInputDialog(null,
 				"Account No: " + accNo + "\n"
 						+ "Current Name: " + account[1] + "\n\n"

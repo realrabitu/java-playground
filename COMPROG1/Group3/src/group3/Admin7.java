@@ -11,6 +11,13 @@ public class Admin7 {
 		if (i == -1)
 			return;
 
+		// The system administrator must remain active so it can always manage accounts.
+		if (Array.accounts.get(i)[5].equalsIgnoreCase("Admin")
+				|| Array.accounts.get(i)[0].equals("0000-0000-0000")) {
+			show("The system administrator account cannot be blocked or activated.");
+			return;
+		}
+
 		String c = ask("Account Name: " + Array.accounts.get(i)[1]
 				+ "\nCurrent status: " + Array.accounts.get(i)[4]
 				+ "\n\nEnter A to Activate or B to Block:");
@@ -40,8 +47,9 @@ public class Admin7 {
 	}
 
 	static int findAccount(String num) {
+		String formatted = DashFormatter.format(num);
 		for (int i = 0; i < Array.accounts.size(); i++) {
-			if (Array.accounts.get(i)[0].equals(num))
+			if (Array.accounts.get(i)[0].equals(formatted))
 				return i;
 		}
 		return -1;
@@ -52,6 +60,11 @@ public class Admin7 {
 			String num = ask(msg);
 			if (num == null || num.equalsIgnoreCase("X"))
 				return -1;
+
+			if (!DashFormatter.isValidAccountNumber(num)) {
+				show("Account number must contain exactly 12 digits.");
+				continue;
+			}
 
 			int idx = findAccount(num);
 			if (idx != -1)
