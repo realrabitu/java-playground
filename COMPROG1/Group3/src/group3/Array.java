@@ -24,7 +24,7 @@ public class Array {
 		accounts.add(new String[] { "3456-7890-1234", "Railee Darrel", "10000.00", "3333", "Active", "Customer" });
 		accounts.add(new String[] { "4567-8901-2345", "Railynne Dessirei", "2500.00", "4444", "Active", "Customer" });
 		accounts.add(new String[] { "5678-9012-3456", "Raine Dessirei", "10000.00", "5555", "Active", "Customer" });
-		accounts.add(new String[] { "0000-000-0000", "System Administrator", "0.00", "0000", "Active", "Admin" });
+		accounts.add(new String[] { "0000-0000-0000", "System Administrator", "0.00", "0000", "Active", "Admin" });
 	}
 	
 	// For test and display ng array gamit ung required na JOption format

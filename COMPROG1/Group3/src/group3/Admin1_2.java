@@ -7,12 +7,16 @@ public class Admin1_2 {
 		String list = "";
 		for (int i = 0; i < Array.accounts.size(); i++) {
 			String[] account = Array.accounts.get(i);
+			if (account[5].equalsIgnoreCase("Admin")) {
+	            continue;
+	        }
 			list += "Account No.: " + account[0] + "\n"
 					+ "Name: " + account[1] + "\n"
 					+ "Balance: P" + account[2] + "\n"
-					+ "PIN: " + account[3] + "\n"
+					+ "PIN: " + account[3] + "\n"	
 					+ "Status: " + account[4] + "\n"
 					+ "Account Type: " + account[5] + "\n\n";
+			
 		}
 		JOptionPane.showMessageDialog(null, list, Array.BANK_NAME + " - All Customers",
 				JOptionPane.INFORMATION_MESSAGE);

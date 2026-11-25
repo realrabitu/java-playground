@@ -29,6 +29,14 @@ public class TransferFund {
     // Kapag nag-type ng X o Cancel, babalik sa Output #3
     static void transferFund(int sender) {
 
+        if (Array.accounts.get(sender)[5].equalsIgnoreCase("Admin")) {
+            JOptionPane.showMessageDialog(null,
+                    "The administrator account cannot send funds.",
+                    Array.BANK_NAME,
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         // 1. Hingin ang recipient account number
         int recipient;
         while (true) {
@@ -53,6 +61,11 @@ public class TransferFund {
                 		"You can't transfer to your own account.", 
                 		Array.BANK_NAME, 
                 		JOptionPane.ERROR_MESSAGE);
+            } else if (Array.accounts.get(recipient)[5].equalsIgnoreCase("Admin")) {
+                JOptionPane.showMessageDialog(null,
+                        "The administrator account cannot receive funds.",
+                        Array.BANK_NAME,
+                        JOptionPane.WARNING_MESSAGE);
             } else {
                 break; // valid na
             }

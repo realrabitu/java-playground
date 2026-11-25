@@ -50,7 +50,7 @@ public class AdminInterface {
                    // changeCustomerPin();
                     break;
                 case "6":
-                    //adminTransferFund();
+                    Admin6.transferFund();
                     break;
                 case "7":
                     Admin7.setStatus();

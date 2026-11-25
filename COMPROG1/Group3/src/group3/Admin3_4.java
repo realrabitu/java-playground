@@ -12,7 +12,7 @@ public class Admin3_4 {
 		}
 		return -1;
 	}
-
+	
 	// Option 3: Magdagdag ng bagong customer
 	static void addNewCustomer() {
 		String accNo = JOptionPane.showInputDialog(null,
@@ -28,7 +28,12 @@ public class Admin3_4 {
 					Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-
+		String digitsOnly = accNo.replaceAll("-", "");
+		if (!digitsOnly.matches("\\d{12}")) {
+			JOptionPane.showMessageDialog(null, "Account number must contain exactly 12 digits.",
+					Array.BANK_NAME, JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		accNo = DashFormatter.format(accNo);
 
 		if (findAccount(accNo) != -1) {
